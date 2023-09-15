@@ -31,7 +31,7 @@ func main() {
 		slackName := queryParams.Get("slack_name")
 		track := queryParams.Get("track")
 		
-		githubFileURL := "https://github.com/vicradon/hngx-task1-go/blob/main/main.py"
+		githubFileURL := "https://github.com/vicradon/hngx-task1-go/blob/main/main.go"
         githubRepoURL := "https://github.com/vicradon/hngx-task1-go"
 
 		statusCode := 200
@@ -57,7 +57,8 @@ func main() {
     })
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprint(w, "It works!")
+		w.WriteHeader(http.StatusNotFound)
+		fmt.Fprint(w, "Route Not Found!\n\nAvailable routes:\n\n1. /api?slack_name=''&track=''")
 	})
 
     http.ListenAndServe(":8080", nil)
